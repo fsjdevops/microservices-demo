@@ -8,5 +8,5 @@ spec:
   system: 
   type: other
   lifecycle: unknown
-  owner: openchoreo-users
+  owner: "openchoreo-users"
 
