@@ -5,8 +5,8 @@ metadata:
   annotations:
     github.com/project-slug: fsjdevops/microservices-demo
 spec:
+  system: 
   type: other
   lifecycle: unknown
-  owner:
-    projectName: online-boutique
+  owner: openchoreo-users
 
