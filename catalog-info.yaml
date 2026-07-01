@@ -7,4 +7,6 @@ metadata:
 spec:
   type: other
   lifecycle: unknown
-  owner: openchoreo-users
+  owner:
+    projectName: default
+
