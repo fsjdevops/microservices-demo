@@ -1,12 +1,158 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: System
 metadata:
-  name: microservices-demo
+  name: online-boutique
   annotations:
     github.com/project-slug: fsjdevops/microservices-demo
 spec:
-  system: 
-  type: other
-  lifecycle: unknown
-  owner: "openchoreo-users"
-
+  owner: openchoreo-users
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: frontend
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: web-application
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+  dependsOn:
+    - component:productcatalogservice
+    - component:currencyservice
+    - component:cartservice
+    - component:recommendationservice
+    - component:shippingservice
+    - component:checkoutservice
+    - component:adservice
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: productcatalogservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cartservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+  dependsOn:
+    - resource:redis-cart
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: checkoutservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+  dependsOn:
+    - component:productcatalogservice
+    - component:shippingservice
+    - component:paymentservice
+    - component:emailservice
+    - component:currencyservice
+    - component:cartservice
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: currencyservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: emailservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: paymentservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: recommendationservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+  dependsOn:
+    - component:productcatalogservice
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: shippingservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: adservice
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: service
+  lifecycle: production
+  owner: openchoreo-users
+  system: online-boutique
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: redis-cart
+  annotations:
+    github.com/project-slug: fsjdevops/microservices-demo
+spec:
+  type: redis
+  owner: openchoreo-users
+  system: online-boutique
