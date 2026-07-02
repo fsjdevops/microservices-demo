@@ -13,9 +13,8 @@
 # limitations under the License.
 
 # Define a default value so it's not empty if the builder fails to provide it
-ARG BUILDPLATFORM=linux/amd64
 
-FROM --platform=$BUILDPLATFORM python:3.14.4-alpine@sha256:dd4d2bd5b53d9b25a51da13addf2be586beebd5387e289e798e4083d94ca837a AS base
+FROM --platform=linux/amd64 python:3.14.4-alpine@sha256:dd4d2bd5b53d9b25a51da13addf2be586beebd5387e289e798e4083d94ca837a AS base
 
 FROM base AS builder
 

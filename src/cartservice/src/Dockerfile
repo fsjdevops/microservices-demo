@@ -13,10 +13,9 @@
 # limitations under the License.
 
 # Define a default value so it's not empty if the builder fails to provide it
-ARG BUILDPLATFORM=linux/amd64
 
 # https://mcr.microsoft.com/product/dotnet/sdk
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0.100-noble@sha256:c7445f141c04f1a6b454181bd098dcfa606c61ba0bd213d0a702489e5bd4cd71 AS builder
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/sdk:10.0.100-noble@sha256:c7445f141c04f1a6b454181bd098dcfa606c61ba0bd213d0a702489e5bd4cd71 AS builder
 ARG TARGETARCH=amd64
 WORKDIR /app
 COPY cartservice.csproj .
